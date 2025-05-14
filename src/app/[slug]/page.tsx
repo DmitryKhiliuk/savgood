@@ -1,11 +1,8 @@
-import {loginToStrapi} from "@/utils/auth";
-import {Button} from "@/components/ui/button";
-import {Input} from "@/components/ui/input";
 import {cookies} from "next/headers";
 
 async function getDataPage(slug: string) {
     const apiUrl = process.env.API_URL;
-    const url = `${apiUrl}/pages?filters[slug][$eq]=${slug}`;
+    const url = `${apiUrl}/api/pages?filters[slug][$eq]=${slug}`;
     const cookie = await cookies()
 
     const token = cookie.get('sgt');
@@ -32,8 +29,6 @@ export default async function Page(
 
     return (
         <>
-            <Button>daasdasd</Button>
-            <Input/>
             <div>{data ? data.data[0].title : '404'}</div>
         </>
     );

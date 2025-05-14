@@ -7,7 +7,7 @@ export async function loginToStrapi() {
         throw new Error("Missing API credentials");
     }
 
-    const res = await fetch(`${apiUrl}/auth/local`, {
+    const res = await fetch(`${apiUrl}/api/auth/local`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

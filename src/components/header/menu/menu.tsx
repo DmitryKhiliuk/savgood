@@ -22,7 +22,7 @@ export const Menu = ({data}: MenuPropsType) => {
                     return <li key={el.id} className="flex items-center gap-5">
                         <Link
                             href={el.slug}
-                            className={cn('relative py-1.5 hover:text-green-700 after:transition-transform after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-green-700 after:scale-x-0 hover:after:scale-x-100 after:origin-right hover:after:origin-left', pathname === `${'/' + el.slug}` ? 'text-green-700' : '')}
+                            className={cn('relative py-1.5 hover:text-[#27528c] after:transition-transform after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:bg-[#27528c] after:scale-x-0 hover:after:scale-x-100 after:origin-right hover:after:origin-left', pathname === `${'/' + el.slug}` ? 'text-[#27528c]' : '')}
                         >
                             {el.title}
                         </Link>
