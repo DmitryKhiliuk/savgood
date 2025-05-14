@@ -2,6 +2,7 @@ import {Geist, Geist_Mono} from "next/font/google";
 import "./globals.css";
 import {Header} from "@/components/header";
 import {getGlobalData} from "@/utils/globalApi";
+import {loginToStrapi} from "@/utils/auth";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -14,6 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export async function generateMetadata() {
+    const token = await loginToStrapi();
     const data = await getGlobalData();
     const apiUrl = process.env.API_URL;
     return {

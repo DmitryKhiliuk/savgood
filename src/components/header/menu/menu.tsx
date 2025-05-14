@@ -13,9 +13,7 @@ export const Menu = ({data}: MenuPropsType) => {
     const pathname = usePathname();
     const ref = useRef<HTMLDivElement | null>(null);
     return (
-        <div className="relative" ref={ref}>
-
-
+        <div className={cn("relative", window.innerWidth <= 1200 ? 'hidden' : '')} ref={ref}>
             {/* Main Menu */}
             <ol className="flex justify-between gap-7">
                 {data ? data.map((el) => {
