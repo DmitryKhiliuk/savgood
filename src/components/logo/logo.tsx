@@ -21,7 +21,7 @@ export const Logo = ({logo}: LogoPropsType) => {
     return (
         <div className={'flex flex-col'}>
             {img}
-            <div className={cn('text-[10px]', window.innerWidth < 1200 ? 'hidden' : '')}>SAVGOOD.RU Официальный
+            <div className={cn('text-[10px] hidden xl:block')}>SAVGOOD.RU Официальный
                 представитель
             </div>
         </div>

@@ -49,7 +49,7 @@ export const Header = async ({logo}: HeaderPropsType) => {
             <Logo logo={logo}/>
             <Menu data={data.data}/>
             <Dialog>
-                <DialogTrigger><Button className={'cursor-pointer'}>Заказать звонок</Button></DialogTrigger>
+                <DialogTrigger asChild><Button className={'cursor-pointer'}>Заказать звонок</Button></DialogTrigger>
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle>Заказать звонок</DialogTitle>

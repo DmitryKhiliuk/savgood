@@ -21,7 +21,7 @@ export const MenuMobile = ({data}: MenuMobilePropsType) => {
 
 
     return (
-        <div className={window.innerWidth >= 1200 ? 'hidden' : ''}>
+        <div className={'xl:hidden'}>
             <Drawer open={open} onOpenChange={setOpen} direction="left">
                 <DrawerTrigger asChild>
                     <div>
