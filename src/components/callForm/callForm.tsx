@@ -9,6 +9,10 @@ import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, Form
 import {Input} from "@/components/ui/input"
 import Cookies from "universal-cookie";
 
+type CallFormPropsType = {
+    apiUrl: string
+}
+
 // Схема валидации формы
 const formSchema = z.object({
     name: z.string().min(2, {
@@ -19,7 +23,8 @@ const formSchema = z.object({
     }),
 })
 
-export function CallForm() {
+
+export function CallForm({apiUrl}: CallFormPropsType) {
 
     const cookies = new Cookies(null, {path: '/'})
      const token = cookies.get('sgt')
@@ -36,8 +41,8 @@ export function CallForm() {
 
     // 2. Обработчик отправки
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        const apiUrl = process.env.API_URL;
-        const url = `http://localhost:1337/api/calls`;
+        //const apiUrl = process.env.API_URL;
+        const url = `${apiUrl}/api/calls`;
 
         const response = await fetch(url, {
             cache: "no-cache",

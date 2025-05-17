@@ -20,6 +20,5 @@ export async function loginToStrapi() {
     }
 
     const data = await res.json();
-    console.log('jwt', data.jwt)
     return data.jwt;
 }

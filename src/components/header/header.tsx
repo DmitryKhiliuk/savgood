@@ -17,9 +17,10 @@ type HeaderPropsType = {
     logo: string
 }
 
+const apiUrl = process.env.API_URL;
 
 async function getDataPage() {
-    const apiUrl = process.env.API_URL;
+
     const url = `${apiUrl}/api/pages`;
 
     const cookie = await cookies()
@@ -57,7 +58,7 @@ export const Header = async ({logo}: HeaderPropsType) => {
                            Оставьте свои данные и мы обязательно с вами свяжемся.
                         </DialogDescription>
                     </DialogHeader>
-                    <CallForm />
+                    {apiUrl && <CallForm apiUrl={apiUrl}/>}
                 </DialogContent>
             </Dialog>
             <MenuMobile data={data.data}/>

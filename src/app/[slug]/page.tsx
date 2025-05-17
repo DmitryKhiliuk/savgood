@@ -1,4 +1,5 @@
 import {cookies} from "next/headers";
+import {ProductList} from "@/components/productList";
 
 async function getDataPage(slug: string) {
     const apiUrl = process.env.API_URL;
@@ -30,6 +31,7 @@ export default async function Page(
     return (
         <>
             <div>{data ? data.data[0].title : '404'}</div>
+            <ProductList slug={params.slug}/>
         </>
     );
 }
