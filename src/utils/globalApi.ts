@@ -1,17 +1,17 @@
-import {cookies} from "next/headers";
 
-export async function getGlobalData() {
+
+export async function getGlobalData(token: string) {
     const apiUrl = process.env.API_URL;
-    const url = `${apiUrl}/api/global?populate[favicon][fields][0]=url&populate[logo][fields][0]=url`;
-    const cookie = await cookies()
-    const token = cookie.get('sgt');
-    const response = await fetch(url, {
-        cache: "no-cache",
+    const res = await fetch(`${apiUrl}/api/global?populate[favicon][fields][0]=url&populate[logo][fields][0]=url`, {
         headers: {
-            Authorization: `Bearer ${token?.value}`,
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
         },
-        method: "GET",
+        next: { revalidate: 60 }, // ISR / кеш
     });
-    return await response.json();
+
+    if (!res.ok) {
+        throw new Error("Failed to fetch global data");
+    }
+
+    return await res.json();
 }
