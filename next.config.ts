@@ -1,14 +1,33 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: process.env.API_URL?.startsWith('https') ? 'https' : 'http',
-        hostname: new URL(process.env.API_URL || '').hostname,
-        pathname: '/uploads/**',
-      },
-    ],
-  },
-}
+    remotePatterns: (() => {
+      const apiUrl = process.env.API_URL;
 
-module.exports = nextConfig
+      if (!apiUrl) {
+        console.warn("⚠️  API_URL is not defined. Skipping image remotePatterns.");
+        return [];
+      }
+
+      let hostname;
+
+      try {
+        hostname = new URL(apiUrl).hostname;
+      } catch (err) {
+        console.error("❌ Invalid API_URL in environment:", apiUrl);
+        throw err;
+      }
+
+      return [
+        {
+          protocol: apiUrl.startsWith('https') ? 'https' : 'http',
+          hostname,
+          pathname: '/uploads/**',
+        },
+      ];
+    })(),
+  },
+};
+
+module.exports = nextConfig;
+

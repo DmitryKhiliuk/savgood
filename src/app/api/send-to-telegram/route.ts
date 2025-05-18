@@ -14,6 +14,7 @@ export async function POST(request: Request) {
         if (!response.ok) throw new Error('Telegram API error')
         return NextResponse.json({success: true})
     } catch (error) {
+        console.log(error)
         return NextResponse.json({error: 'Failed to send to Telegram'}, {status: 500})
     }
 }
