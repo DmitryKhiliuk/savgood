@@ -3,7 +3,6 @@ import {cookies} from "next/headers";
 import {loginToStrapi} from "@/utils/auth";
 
 export async function GET(request: NextRequest) {
-    console.log('get')
     const token = await loginToStrapi();
     const cookie = await cookies()
     cookie.set("sgt", token, {

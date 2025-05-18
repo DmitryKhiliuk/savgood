@@ -28,7 +28,6 @@ export function CallForm({apiUrl}: CallFormPropsType) {
 
     const cookies = new Cookies(null, {path: '/'})
      const token = cookies.get('sgt')
-        console.log(cookies)
 
     // 1. Определение формы
     const form = useForm<z.infer<typeof formSchema>>({

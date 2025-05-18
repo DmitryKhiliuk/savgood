@@ -17,7 +17,6 @@ type ProductListPropsType = {
 }
 
 async function getProducts(slug: string, page: number) {
-    console.log(page)
     const apiUrl = process.env.API_URL;
     const url = `${apiUrl}/api/products?populate[char][populate]=*&populate[image][fields]=url&filters[type][$eq]=${slug}&pagination[page]=${page}&pagination[pageSize]=8`;
     const cookie = await cookies()
@@ -38,7 +37,6 @@ async function getProducts(slug: string, page: number) {
 export const ProductList = async ({slug, currentPage}: ProductListPropsType) => {
     const data = await getProducts(slug, currentPage);
     const totalPages = data.meta.pagination.pageCount;
-    console.log(currentPage)
     // Функция для генерации массива страниц для пагинации
     const getPageNumbers = () => {
         const pages = [];
