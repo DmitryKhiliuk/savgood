@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+require('dotenv').config();
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -5,16 +8,15 @@ const nextConfig = {
       const apiUrl = process.env.API_URL;
 
       if (!apiUrl) {
-        console.warn("⚠️  API_URL is not defined. Skipping image remotePatterns.");
+        console.warn('⚠️ API_URL not defined, skipping remotePatterns');
         return [];
       }
 
       let hostname;
-
       try {
         hostname = new URL(apiUrl).hostname;
       } catch (err) {
-        console.error("❌ Invalid API_URL in environment:", apiUrl);
+        console.error('❌ Invalid API_URL:', apiUrl);
         throw err;
       }
 
@@ -30,4 +32,3 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-
